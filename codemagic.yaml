@@ -1,0 +1,19 @@
+workflows:
+  ios-workflow:
+    name: Build iOS app (no signing)
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Get Flutter dependencies
+        script: flutter pub get
+      - name: Build iOS (no signing)
+        script: |
+          flutter build ipa --no-codesign
+    artifacts:
+      - build/ios/ipa/*.ipa
+    publishing:
+      email:
+        recipients:
+          - yuseicc798@gmail.com
